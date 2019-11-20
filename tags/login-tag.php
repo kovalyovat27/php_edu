@@ -1,6 +1,5 @@
 <script>
     $('.js-click-modal').click(function () {
-        alert("hello");
         $('.container-fluid').addClass('modal-open');
     });
 
@@ -22,14 +21,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/registration.php" method="post">
-                        <input name="path" type="hidden" value="${path}">
+                    <div id="login-validation-errors"></div>
+                    <form id="loginForm">
                         <div class="form-group">
                             <label for="exampleInputEmail1">
                                 e-mail
                             </label>
                             <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
-                                   name="login"
+                                   name="email"
                                    placeholder="Enter e-mail"
                                    type="email" required>
                         </div>
@@ -41,12 +40,8 @@
                                    placeholder="Password"
                                    type="password" required>
                         </div>
-                        <button class="btn btn-warning" type="submit">
-                            LogIn
-                        </button>
-                        <a href="registration.php" class="btn btn-info">
-                            SignUp
-                        </a>
+                        <input type="submit" class="btn btn-secondary btn-block" value="LogIN"
+                               name=""/>
                     </form>
                     <small class="form-text text-muted" id="emailHelp">We'll never share your account
                         data with anyone else.

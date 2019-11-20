@@ -7,7 +7,7 @@ const PASSWORDS_NOT_THE_SAMES = "Passwords are not the sames!";
 const INFO_FIELD_ID = "-info";
 
 $(document).ready(function () {
-    $("form").submit(function (e) {
+    $("#signupForm").submit(function (e) {
         e.preventDefault();
         let validationResult = true;
         $(this).each(function () {
@@ -16,8 +16,24 @@ $(document).ready(function () {
             })
         });
         validationResult = validationResult & isPasswordsValid($("#password"), $("#repassword"));
-        if (validationResult == true){
-            $(this).unbind("submit").submit();
+        if (validationResult == true) {
+            var data = $(this);
+            var url = '../controllers/registrationController.php';
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data.serialize(),
+                success: function (response) {
+                    var responseData = JSON.parse(response);
+                    if (responseData.success == "0"){
+                        var message = '<div class="alert alert-danger" role="alert">' + responseData.errorMessage + '</div>';
+                        $("#validation-errors").html(message);
+                    } else {
+                        window.location.href = "/";
+                    }
+                }
+            });
         }
     });
 });

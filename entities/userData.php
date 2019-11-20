@@ -1,7 +1,8 @@
 <?php
-require_once "utils/model.php";
-require_once "utils/validator/userDataValidator.php";
-require_once "entities/user.php";
+require_once "../utils/model.php";
+require_once "../utils/validator/userDataValidator.php";
+require_once "../entities/user.php";
+require_once "../utils/salt.php";
 
 class UserData extends Model
 {
@@ -33,12 +34,12 @@ class UserData extends Model
 
     function buildUser()
     {
-        echo $this->email;
-        return new User($this->firstName, $this->secondName, $this->email, $this->role, $this->password);
+        $hashedPassword = hash('sha256', SALT . $this->password);
+        return new User($this->firstName, $this->secondName, $this->email, $this->role, $hashedPassword);
     }
 
     function getInfo()
     {
-        echo " " . $this->userName . $this->login;
+        echo " " . $this->firstName . $this->secondName;
     }
 }

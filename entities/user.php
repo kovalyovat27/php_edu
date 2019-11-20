@@ -1,5 +1,5 @@
 <?php
-require_once "utils/model.php";
+require_once "../utils/model.php";
 
 class User extends Model
 {
@@ -8,8 +8,8 @@ class User extends Model
         $role,
         $email,
         $password,
-        $avatarId,
         $activationStatus;
+    public $avatar = "default.jpg";
 
     public function __construct($firstName, $secondName, $email, $role, $password)
     {
