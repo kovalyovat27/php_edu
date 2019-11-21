@@ -1,5 +1,4 @@
 <?php
-include_once "connectionInfo.php";
 include_once "defaultDAO.php";
 include_once "../entities/user.php";
 
@@ -9,7 +8,7 @@ class UserDAO extends DefaultDAO
     const GET_USER_BY_EMAIL_SQL_QUERY = "SELECT * FROM users WHERE email=? LIMIT 1";
     const GET_USER_BY_ID_SQL_QUERY = "SELECT * FROM users WHERE id=? LIMIT 1";
     const UPDATE_FILE_NAME_SQL_QUERY = "UPDATE users SET avatar_path=? WHERE email=?";
-    const SELECT_ALL_USERS_BY_FILTERS = "SELECT * FROM users LIMIT ?";
+    const SELECT_ALL_USERS = "SELECT * FROM users";
     const DELETE_USER_BY_ID_QUERY = "DELETE FROM users WHERE id=?";
 
     function addUser(User $user)
@@ -26,11 +25,10 @@ class UserDAO extends DefaultDAO
         $this->closeSqlConnection($connection);
     }
 
-    function getUsersByLimit($limit)
+    function getAllUsers()
     {
         $connection = $this->getSqlConnection();
-        $stmt = $connection->prepare(self::SELECT_ALL_USERS_BY_FILTERS);
-        $stmt->bind_param('i', $limit);
+        $stmt = $connection->prepare(self::SELECT_ALL_USERS);
         $stmt->execute() or die('Запрос не удался: ' . $stmt->error);
         $result = $stmt->get_result();
         $userList = array();
