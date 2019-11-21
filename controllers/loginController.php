@@ -1,6 +1,5 @@
 <?php
 require_once "../database/userDAO.php";
-require_once "../utils/salt.php";
 require_once "../utils/sessionExecutor.php";
 
 
@@ -11,7 +10,7 @@ if (SessionExecutor::isUserAuthorized()) {
         $userDAO = new UserDAO();
         $user = $userDAO->getUserWithSuchEmail($_POST['email']);
         if ($user != null) {
-            if ($user->password == hash('sha256', SALT . $_POST['password'])) {
+            if ($user->password == $_POST['password']) {
                 SessionExecutor::setUserToSession($user);
                 echo json_encode(array('success' => 1));
             } else {

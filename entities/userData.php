@@ -2,7 +2,6 @@
 require_once "../utils/model.php";
 require_once "../utils/validator/userDataValidator.php";
 require_once "../entities/user.php";
-require_once "../utils/salt.php";
 
 class UserData extends Model
 {
@@ -34,7 +33,7 @@ class UserData extends Model
 
     function buildUser()
     {
-        $hashedPassword = hash('sha256', SALT . $this->password);
+        $hashedPassword = $this->password;
         return new User($this->firstName, $this->secondName, $this->email, $this->role, $hashedPassword);
     }
 

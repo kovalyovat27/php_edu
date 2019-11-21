@@ -1,4 +1,3 @@
-<?php include_once "utils/sessionExecutor.php"; ?>
 <nav class="navbar navbar-expand-lg fixed-top ">
     <a class="navbar-brand" href="../index.php">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -20,12 +19,15 @@
                     <div>
                         <form id="logoutForm">
                             <span><?php echo $userInfo['firstname'] . " " . $userInfo['secondname']?></span>
-                            <img height="40px" src='<?php include_once "../controllers/avatarsController.php"?>' width="40px">
+                            <a href="personalPage.php"><img height="40px" src='controllers/currentUserAvatarController.php' width="40px"></a>
                             <button class="btn btn-secondary" type="submit" value="LogIn">LogOut</button>
                         </form>
                     </div>
                 </li>
             <?php } ?>
+            <li class="nav-item">
+                    <a class="nav-link" href="userList.php">Users</a>
+            </li>
         </ul>
     </div>
 </nav>

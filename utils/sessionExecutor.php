@@ -1,9 +1,9 @@
 <?php
+
 session_start();
 
 class SessionExecutor
 {
-
     public static function setUserToSession($user)
     {
         $_SESSION['firstname'] = $user->firstName;
@@ -11,6 +11,7 @@ class SessionExecutor
         $_SESSION['role'] = $user->role;
         $_SESSION['email'] = $user->email;
         $_SESSION['avatar'] = $user->avatar;
+        $_SESSION['id'] = $user->id;
     }
 
     public static function removeUserFromSession()
@@ -19,7 +20,13 @@ class SessionExecutor
         unset ($_SESSION['secondname']);
         unset ($_SESSION['role']);
         unset ($_SESSION['email']);
-        unset($_SESSION['avatar']);
+        unset ($_SESSION['avatar']);
+        unset ($_SESSION['id']);
+    }
+
+    public static function changeUserAvatar($avatar)
+    {
+        $_SESSION['avatar'] = $avatar;
     }
 
     public static function isUserAuthorized()
@@ -33,6 +40,7 @@ class SessionExecutor
             'secondname' => $_SESSION['secondname'],
             'role' => $_SESSION['role'],
             'email' => $_SESSION['email'],
-            'avatar' => $_SESSION['avatar']);
+            'avatar' => $_SESSION['avatar'],
+            'id' => $_SESSION['id']);
     }
 }

@@ -10,6 +10,7 @@ class User extends Model
         $password,
         $activationStatus;
     public $avatar = "default.jpg";
+    public $id;
 
     public function __construct($firstName, $secondName, $email, $role, $password)
     {

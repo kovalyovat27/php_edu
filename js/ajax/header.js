@@ -3,7 +3,6 @@ $(document).ready(function () {
         e.preventDefault();
         var data = $(this);
         var url = '../controllers/loginController.php';
-
         $.ajax({
             type: "POST",
             url: url,
@@ -26,7 +25,6 @@ $(document).ready(function () {
         e.preventDefault();
         var data = $(this);
         var url = '../controllers/logOutController.php';
-
         $.ajax({
             type: "POST",
             url: url,
@@ -36,6 +34,32 @@ $(document).ready(function () {
                 if (responseData.success == "1") {
                     window.location.href = "/";
                 }
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+    $("#userImage").on("click", function () {
+        $('#fileChooser').trigger('click');
+    });
+});
+
+$(document).ready(function () {
+    $("#fileChooser").on("change", function () {
+        formdata = new FormData();
+        if ($(this).prop('files').length > 0) {
+            file = $(this).prop('files')[0];
+            formdata.append("avatar", file);
+        }
+        jQuery.ajax({
+            url: "../controllers/avatarsSaveController.php",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                window.location.href = "/personalPage.php";
             }
         });
     });

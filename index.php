@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<?php include_once "tags/head-tag.php" ?>
-
+<?php include_once "tags/page-meta.php" ?>
 <body>
 <!-- navbar -->
 <?php include_once "tags/home-tag.php"; ?>

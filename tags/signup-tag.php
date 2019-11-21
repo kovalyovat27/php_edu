@@ -1,6 +1,5 @@
 <script>
     $('.js-click-modal').click(function () {
-        alert("hello");
         $('.container-fluid').addClass('modal-open');
     });
 
@@ -49,7 +48,7 @@
                                 <label for="role-selector">Select role:</label>
                                 <select name="role" id="role-selector" class="form-control" required>
                                     <option value="user">Simple user</option>
-                                    <option value="user">Moderator</option>
+                                    <option value="admin">Moderator</option>
                                 </select>
                                 <small class="form-text" id="role-selector-info"></small>
                             </div>

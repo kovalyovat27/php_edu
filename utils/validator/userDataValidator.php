@@ -7,7 +7,7 @@ function isUserNameValid($userName)
 
 function isRoleValid($role)
 {
-    return $role == "user" || $role == "moderator";
+    return $role == "user" || $role == "admin";
 }
 
 function isPasswordsValid($password, $repassword)
